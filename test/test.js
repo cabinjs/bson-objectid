@@ -72,6 +72,14 @@ describe("ObjectIDs", function() {
     o.str.should.eql(hexString);
   });
 
+  it("should correctly retrieve timestamp", function() {
+    var testDate = new Date();
+    var object1 = new ObjectID();
+    var seconds1 = Math.floor(testDate.getTime()/1000);
+    var seconds2 = Math.floor(object1.getTimestamp().getTime()/1000);
+    seconds1.should.eql(seconds2);
+  });
+
   it("should validate valid hex strings", function() {
     ObjectID.isValid("54495ad94c934721ede76d90").should.be.ok;
     ObjectID.isValid("aaaaaaaaaaaaaaaaaaaaaaaa").should.be.ok;
@@ -86,6 +94,11 @@ describe("ObjectIDs", function() {
 
   it("should invalidate bad strings", function() {
     ObjectID.isValid().should.not.be.ok;
+    ObjectID.isValid(null).should.not.be.ok;
+    ObjectID.isValid({}).should.not.be.ok;
+    ObjectID.isValid([]).should.not.be.ok;
+    ObjectID.isValid(true).should.not.be.ok;
+    ObjectID.isValid("invalid").should.not.be.ok;
     ObjectID.isValid("").should.not.be.ok;
     ObjectID.isValid("zzzzzzzzzzzzzzzzzzzzzzzz").should.not.be.ok;
     ObjectID.isValid("54495-ad94c934721ede76d9").should.not.be.ok;
@@ -107,6 +120,12 @@ describe("ObjectIDs", function() {
     var hexString = "54495ad94c934721ede76d90";
     var o = new ObjectID(hexString);
     o.toString().should.eql("54495ad94c934721ede76d90");
+  });
+
+  it("should throw and error if constructing with an invalid string", function() {
+    (function(){
+      var o = new ObjectID("tttttttttttttttttttttttt");
+    }).should.throw();
   });
 
 });

@@ -22,7 +22,7 @@ function ObjectID(arg) {
     buf = Array.prototype.slice.call(arg);
   }
   else if(typeof arg === "string") {
-    if(arg.length!==12 && arg.length!==24)
+    if(arg.length!==12 && !ObjectID.isValid(arg))
       throw new Error("Argument passed in must be a single String of 12 bytes or a string of 24 hex characters");
 
     buf = buffer(arg);
@@ -116,7 +116,7 @@ ObjectID.prototype = {
    * @api public
    */
   getTimestamp: function(){
-    return new Date(parseInt(this.str.substr(0,8), 16));
+    return new Date(parseInt(this.str.substr(0,8), 16) * 1000);
   }
 };
 
