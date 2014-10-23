@@ -17,7 +17,6 @@ function ObjectID(arg) {
     return arg;
 
   var buf;
-  console.log(arg);
 
   if(isBuffer(arg) || (Array.isArray(arg) && arg.length===12)) {
     buf = Array.prototype.slice.call(arg);
@@ -38,8 +37,8 @@ function ObjectID(arg) {
   Object.defineProperty(this, "str", {
     get: function() { return buf.map(hex.bind(this, 2)).join(''); }
   });
-  console.log(buf, arg);
 }
+module.exports = ObjectID;
 ObjectID.generate = generate;
 
 /**
@@ -117,7 +116,7 @@ ObjectID.prototype = {
    * @api public
    */
   getTimestamp: function(){
-    return Date(parseInt(this.str.substr(0,8), 16));
+    return new Date(parseInt(this.str.substr(0,8), 16));
   }
 };
 
@@ -163,5 +162,3 @@ ObjectID.prototype.inspect = function() { return "ObjectID("+this+")" };
 ObjectID.prototype.toJSON = ObjectID.prototype.toHexString;
 ObjectID.prototype.toString = ObjectID.prototype.toHexString;
 
-exports.ObjectID = ObjectID;
-exports.ObjectId = ObjectID;//just an alias

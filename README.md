@@ -13,13 +13,15 @@ public API implementation (found here: https://github.com/mongodb/js-bson/blob/m
 
 ## Usage
 
-### ObjectID()<br>ObjectID(time)<br>ObjectID(hexString)<br>ObjectID(idString)
+### ObjectID()<br>ObjectID(time)<br>ObjectID(hexString)<br>ObjectID(idString)<br>ObjectID(array)<br>ObjectID(buffer)
 Creates a new immutable `ObjectID` instance based on the current system time.
 
 Possible arguments:
 **time** Constructs the instance based on the specified time (in seconds).
 **hexString** Constructs the instance from a 24 character hex string.
 **idString** Constructs the instance from a 12 byte string.
+**array** Constructs the instance from an `Array` of 24 bytes.
+**buffer** Constructs the instance from a 24 byte `Buffer` instance.
 
 #### #id
 **returns** the 12 byte id string.
@@ -44,15 +46,12 @@ Checks if a value is a valid `ObjectID` or 24 character hex string.
 > THE NATIVE DOCUMENTATION ISN'T CLEAR ON THIS GUY!<br>
 > See: http://mongodb.github.io/node-mongodb-native/api-bson-generated/objectid.html#objectid-isvalid
 
-#### ObjectID.generate()<br>ObjectID.generate(time)
+### ObjectID.generate()<br>ObjectID.generate(time)
 You can use this to generate a 24 character hex string without instantiating a `ObjectID` instance.
 
 This diverges from [bson](https://github.com/mongodb/js-bson)'s implementation which returns the 12 byte string.
 
 **returns** a valid 24 character `ObjectID` hex string.
-
-#### ObjectID or ObjectId
-`ObjectID` is aliased as `ObjectId` for convience and compatibility with [bson](https://github.com/mongodb/js-bson).
 
 ## Test
     mocha

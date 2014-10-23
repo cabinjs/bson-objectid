@@ -1,0 +1,33 @@
+{
+  "name": "bson-objectid",
+  "version": "0.1.1",
+  "description": "Construct ObjectIDs without the mongodb driver or bson module",
+  "main": "objectid.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/williamwicks/bson-objectid.git"
+  },
+  "keywords": [
+    "ObjectID",
+    "mongo",
+    "mongodb",
+    "bson",
+    "createFromHexString",
+    "hex"
+  ],
+  "author": "William Kapke-Wicks",
+  "license": "Apache v2",
+  "bugs": {
+    "url": "https://github.com/williamwicks/bson-objectid/issues"
+  },
+  "homepage": "https://github.com/williamwicks/bson-objectid",
+  "devDependencies": {
+    "should": "^4.1.0"
+  }
+}
