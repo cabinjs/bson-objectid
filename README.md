@@ -16,7 +16,7 @@ public API implementation (found here: https://github.com/mongodb/js-bson/blob/m
 ### ObjectID()<br>ObjectID(time)<br>ObjectID(hexString)<br>ObjectID(idString)<br>ObjectID(array)<br>ObjectID(buffer)
 Creates a new immutable `ObjectID` instance based on the current system time.
 
-Possible arguments:
+Possible arguments:<br>
 **time** Constructs the instance based on the specified time (in seconds).<br>
 **hexString** Constructs the instance from a 24 character hex string.<br>
 **idString** Constructs the instance from a 12 byte string.<br>
