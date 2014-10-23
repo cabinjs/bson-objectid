@@ -17,11 +17,11 @@ public API implementation (found here: https://github.com/mongodb/js-bson/blob/m
 Creates a new immutable `ObjectID` instance based on the current system time.
 
 Possible arguments:
-**time** Constructs the instance based on the specified time (in seconds).
-**hexString** Constructs the instance from a 24 character hex string.
-**idString** Constructs the instance from a 12 byte string.
-**array** Constructs the instance from an `Array` of 24 bytes.
-**buffer** Constructs the instance from a 24 byte `Buffer` instance.
+**time** Constructs the instance based on the specified time (in seconds).<br>
+**hexString** Constructs the instance from a 24 character hex string.<br>
+**idString** Constructs the instance from a 12 byte string.<br>
+**array** Constructs the instance from an `Array` of 24 bytes.<br>
+**buffer** Constructs the instance from a 24 byte `Buffer` instance.<br>
 
 #### #id
 **returns** the 12 byte id string.
