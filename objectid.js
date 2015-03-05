@@ -2,9 +2,7 @@
 var MACHINE_ID = parseInt(Math.random() * 0xFFFFFF, 10);
 var index = ObjectID.index = parseInt(Math.random() * 0xFFFFFF, 10);
 var pid = typeof process === 'undefined' ? Math.floor(Math.random() * 100000) : process.pid % 0xFFFF;
-var isBuffer = function( obj ) {
-  return typeof Buffer !== "undefined" && Buffer.isBuffer( obj );
-};
+var isBuffer = require( 'is-buffer' );
 
 /**
  * Create a new immutable ObjectID instance
