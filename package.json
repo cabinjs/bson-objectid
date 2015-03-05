@@ -29,5 +29,8 @@
   "homepage": "https://github.com/williamwicks/bson-objectid",
   "devDependencies": {
     "should": "^4.1.0"
+  },
+  "dependencies": {
+    "is-buffer": "^1.0.1"
   }
 }
