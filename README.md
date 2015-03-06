@@ -74,3 +74,6 @@ License
 Apache v2.0
 
 See LICENSE file.
+
+Special callout to [@feross](https://github.com/feross) for the [is-buffer](https://github.com/feross/is-buffer) code
+used internally to avoid Buffer from being loaded in browserify environments.
