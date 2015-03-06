@@ -2,7 +2,22 @@
 var MACHINE_ID = parseInt(Math.random() * 0xFFFFFF, 10);
 var index = ObjectID.index = parseInt(Math.random() * 0xFFFFFF, 10);
 var pid = typeof process === 'undefined' ? Math.floor(Math.random() * 100000) : process.pid % 0xFFFF;
-var isBuffer = typeof Buffer !== "undefined"? Buffer.isBuffer : function(){};
+
+/**
+ * Determine if an object is Buffer
+ *
+ * Author:   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * License:  MIT
+ *
+ */
+var isBuffer = function (obj) {
+  return !!(
+  obj != null &&
+  obj.constructor &&
+  typeof obj.constructor.isBuffer === 'function' &&
+  obj.constructor.isBuffer(obj)
+  )
+};
 
 /**
  * Create a new immutable ObjectID instance
