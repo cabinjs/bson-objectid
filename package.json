@@ -1,6 +1,6 @@
 {
   "name": "bson-objectid",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Construct ObjectIDs without the mongodb driver or bson module",
   "main": "objectid.js",
   "directories": {

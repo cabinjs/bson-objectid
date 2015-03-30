@@ -104,6 +104,21 @@ describe("ObjectIDs", function() {
     ObjectID.isValid("54495-ad94c934721ede76d9").should.not.be.ok;
   });
 
+  it("should evaluate equality with .equals()", function() {
+    var id1 = ObjectID();
+    var id2 = ObjectID(id1.str);
+    (id1.equals(id2)).should.be.true;
+  });
+
+  it("should evaluate equality with via deepEqual", function() {
+    var id1 = ObjectID();
+    var id2 = ObjectID(id1.str);
+    id1.should.eql(id2);
+
+    var id3 = ObjectID();
+    id1.should.not.eql(id3, "id1 is not the same as id3");
+  });
+
   it("should generate valid hex strings", function() {
     var h = ObjectID.generate();
     ObjectID.isValid(h).should.be.ok;

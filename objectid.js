@@ -47,6 +47,7 @@ function ObjectID(arg) {
   }
 
   Object.defineProperty(this, "id", {
+    enumerable: true,
     get: function() { return String.fromCharCode.apply(this, buf); }
   });
   Object.defineProperty(this, "str", {
