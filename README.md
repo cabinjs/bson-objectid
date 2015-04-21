@@ -1,4 +1,4 @@
-BSON ObjectID
+BSON ObjectID &nbsp;[![Circle CI](https://circleci.com/gh/williamkapke/bson-objectid.svg?style=svg)](https://circleci.com/gh/williamkapke/bson-objectid)
 =============
 
 This mdoule allows you to create and parse `ObjectID`s without a reference to the
