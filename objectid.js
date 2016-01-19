@@ -103,6 +103,7 @@ ObjectID.isValid = function(objectid) {
 
 ObjectID.prototype = {
   _bsontype: 'ObjectID',
+  constructor: ObjectID,
 
   /**
    * Return the ObjectID id as a 24 byte hex string representation
