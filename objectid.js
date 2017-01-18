@@ -1,7 +1,7 @@
 
 var MACHINE_ID = parseInt(Math.random() * 0xFFFFFF, 10);
 var index = ObjectID.index = parseInt(Math.random() * 0xFFFFFF, 10);
-var pid = typeof process === 'undefined' || (typeof process.pid !== 'number' ? Math.floor(Math.random() * 100000) : process.pid) % 0xFFFF;
+var pid = (typeof process === 'undefined' || typeof process.pid !== 'number' ? Math.floor(Math.random() * 100000) : process.pid) % 0xFFFF;
 
 /**
  * Determine if an object is Buffer
@@ -178,4 +178,3 @@ function buffer(str) {
 ObjectID.prototype.inspect = function() { return "ObjectID("+this+")" };
 ObjectID.prototype.toJSON = ObjectID.prototype.toHexString;
 ObjectID.prototype.toString = ObjectID.prototype.toHexString;
-
