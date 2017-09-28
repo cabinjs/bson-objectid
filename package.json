@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/williamkapke/bson-objectid",
   "devDependencies": {
+    "mocha": "^3.5.3",
     "should": "^4.1.0"
   }
 }

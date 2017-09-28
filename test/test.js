@@ -143,5 +143,36 @@ describe("ObjectIDs", function() {
     }).should.throw();
   });
 
+  it("should should set/get a custom machineID", function() {
+    var tests = [
+      { machineID: 0x1,                 expected: 0x000001 }, // short
+      { machineID: 0x123456,            expected: 0x123456 }, // exact
+      { machineID: 0x0987654321,        expected: 0x654321 }, // long
+
+      { machineID: 'TIZÙLG!íçm',      expected: 0xe41e05 }, // any string
+
+      { machineID: '01',            expected: 0x000001 }, // short hex string
+      { machineID: '01a2b3',        expected: 0x01a2b3 }, // exact hex string
+      { machineID: '7f6e5d4c3b2a0', expected: 0xc3b2a0 }, // long hex string
+    ];
+
+    tests.forEach(function(test) {
+      ObjectID.setMachineID(test.machineID);
+
+      ObjectID.getMachineID().should.eql(test.expected);
+    });
+  });
+
+  it("should work with a specific machineID", function() {
+    var testPattern = /^([0-9a-f]{8})([0-9a-f]{6})([0-9a-f]{4})([0-9a-f]{6})$/i;
+
+    var mid = parseInt(Math.random() * 0xFFFFFF, 10);
+    ObjectID.setMachineID(mid);
+    
+    var o = ObjectID.generate();
+    var result = o.match(testPattern);
+    
+    result[2].should.eql(mid.toString(16));
+  });
 });
 
