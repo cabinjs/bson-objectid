@@ -62,6 +62,13 @@ This diverges from [bson](https://github.com/mongodb/js-bson)'s implementation w
 
 **returns** a valid 24 character `ObjectID` hex string.
 
+### ObjectID.setMachineID(number)<br>ObjectID.setMachineID(string)
+You can use this to set a custom machine-id.
+It should be a 6 character hex string or a 3 byte integer and will truncate all larger values.
+
+### ObjectID.getMachineID()
+**returns** the machine-id as a 3 byte int.
+
 ## Test
     mocha
 
