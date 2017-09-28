@@ -101,6 +101,47 @@ ObjectID.isValid = function(objectid) {
   return /^[0-9A-F]{24}$/i.test(objectid.toString());
 };
 
+/**
+ * set a custom machineID
+ * 
+ * @param {String|Number} machineid Can be a string, hex-string or a number
+ * @return {void}
+ * @api public
+ */
+ObjectID.setMachineID = function(arg) {
+  var machineID;
+
+  if(typeof arg === "string") {
+    // hex string
+    machineID = parseInt(arg, 16);
+   
+    // any string
+    if(isNaN(machineID)) {
+      arg = ('000000' + arg).substr(-7,6);
+
+      machineID = "";
+      for(var i = 0;i<6; i++) {
+        machineID += (arg.charCodeAt(i));
+      }
+    }
+  }
+  else if(/number|undefined/.test(typeof arg)) {
+    machineID = arg | 0;
+  }
+
+  MACHINE_ID = (machineID & 0xFFFFFF);
+}
+
+/**
+ * get the machineID
+ * 
+ * @return {number}
+ * @api public
+ */
+ObjectID.getMachineID = function() {
+  return MACHINE_ID;
+}
+
 ObjectID.prototype = {
   _bsontype: 'ObjectID',
   constructor: ObjectID,

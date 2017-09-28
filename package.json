@@ -33,5 +33,6 @@
     "@types/node": "^8.0.31",
     "should": "^4.1.0",
     "typescript": "^2.5.3"
+    "mocha": "^3.5.3"
   }
 }
