@@ -1,5 +1,5 @@
 /// <reference path="../objectid.d.ts" />
-import ObjectID = require('../objectid');
+import ObjectID from '../objectid';
 
 // ----------------------------------------------------------------------------
 // setup test data
@@ -12,7 +12,7 @@ const idString:string = "TIZÙLG!íçm";
 
 // ----------------------------------------------------------------------------
 // should construct with no arguments
-let oid:ObjectID = new ObjectID();
+let oid = new ObjectID();
 
 // ----------------------------------------------------------------------------
 // should have an `id` property

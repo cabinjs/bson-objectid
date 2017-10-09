@@ -56,6 +56,7 @@ function ObjectID(arg) {
 }
 module.exports = ObjectID;
 ObjectID.generate = generate;
+ObjectID.default = ObjectID;
 
 /**
  * Creates an ObjectID from a second based number, with the rest of the ObjectID zeroed out. Used for comparisons or sorting the ObjectID.
