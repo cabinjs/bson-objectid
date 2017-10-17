@@ -2,7 +2,7 @@
 // Project: bson-objectid
 // Definitions by: Marcel Ernst <https://www.marcel-ernst.de>
 
-export = ObjectID;
+export default ObjectID;
 
 declare class ObjectID {
     static createFromTime(time: number): ObjectID;
