@@ -1,5 +1,5 @@
 
-var MACHINE_ID = parseInt(Math.random() * 0xFFFFFF, 10);
+var MACHINE_ID = Math.floor(Math.random() * 0xFFFFFF);
 var index = ObjectID.index = parseInt(Math.random() * 0xFFFFFF, 10);
 var pid = (typeof process === 'undefined' || typeof process.pid !== 'number' ? Math.floor(Math.random() * 100000) : process.pid) % 0xFFFF;
 
