@@ -1,7 +1,7 @@
 // Type definitions for bson-objectid 1.1.5
 // Project: bson-objectid
 // Definitions by: Marcel Ernst <https://www.marcel-ernst.de>
-
+import { Buffer } from 'buffer';
 export default ObjectID;
 
 declare class ObjectID {
