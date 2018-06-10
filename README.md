@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/williamkapke/bson-objectid.svg?branch=master)](https://travis-ci.org/williamkapke/bson-objectid)
+BSON ObjectID &nbsp;[![Build Status](https://travis-ci.org/williamkapke/bson-objectid.svg?branch=master)](https://travis-ci.org/williamkapke/bson-objectid)
 =============
 
 This module allows you to create and parse `ObjectID`s without a reference to the
