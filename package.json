@@ -1,6 +1,6 @@
 {
   "name": "bson-objectid",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Construct ObjectIDs without the mongodb driver or bson module",
   "main": "objectid.js",
   "typings": "./objectid.d.ts",
@@ -24,7 +24,7 @@
     "hex"
   ],
   "author": "William Kapke",
-  "license": "Apache v2",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/williamkapke/bson-objectid/issues"
   },
