@@ -211,12 +211,14 @@ function buffer(str) {
   return out;
 }
 
+var inspect = (Symbol && Symbol.for('nodejs.util.inspect.custom')) || 'inspect';
+
 /**
  * Converts to a string representation of this Id.
  *
  * @return {String} return the 24 byte hex string representation.
  * @api private
  */
-ObjectID.prototype.inspect = function() { return "ObjectID("+this+")" };
+ObjectID.prototype[inspect] = function() { return "ObjectID("+this+")" };
 ObjectID.prototype.toJSON = ObjectID.prototype.toHexString;
 ObjectID.prototype.toString = ObjectID.prototype.toHexString;
