@@ -174,5 +174,11 @@ describe("ObjectIDs", function() {
     
     result[2].should.eql(mid.toString(16));
   });
+
+  it("should not throw an error for objects without toString", function() {
+    var obj = Object.create({}, { toString: { value: false, writeable: false } });
+    obj.toString.should.not.be.ok;
+    ObjectID.isValid(obj).should.not.be.ok;
+  });
 });
 

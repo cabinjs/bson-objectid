@@ -95,7 +95,7 @@ ObjectID.createFromHexString = function(hexString) {
  * http://mongodb.github.io/node-mongodb-native/api-bson-generated/objectid.html#objectid-isvalid
  */
 ObjectID.isValid = function(objectid) {
-  if(!objectid) return false;
+  if(!objectid || (typeof objectid !== 'string' && (typeof objectid !== 'object' || typeof objectid.toString !== 'function'))) return false;
 
   //call .toString() to get the hex if we're
   // working with an instance of ObjectID
