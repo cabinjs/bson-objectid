@@ -3,7 +3,7 @@
   "version": "1.3.0",
   "description": "Construct ObjectIDs without the mongodb driver or bson module",
   "main": "objectid.js",
-  "typings": "./objectid.d.ts",
+  "types": "./objectid.d.ts",
   "directories": {
     "test": "test"
   },
