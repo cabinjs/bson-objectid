@@ -9,6 +9,7 @@ declare class ObjectID {
     static createFromHexString(hexString: string): ObjectID;
     static isValid(hexString: string):boolean;
     static isValid(ObjectID: ObjectID):boolean;
+    static sanitizeObject(input: object): object;
     static generate(): string;
     static generate(time: number): string;
     static toString():string;

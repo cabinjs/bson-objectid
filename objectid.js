@@ -28,8 +28,10 @@ var isBuffer = function (obj) {
  */
 function ObjectID(arg) {
   if(!(this instanceof ObjectID)) return new ObjectID(arg);
-  if(arg && ((arg instanceof ObjectID) || arg._bsontype==="ObjectID"))
-    return arg;
+  // attempt at addressing comments 6-7 https://github.com/williamkapke/bson-objectid/issues/30
+  if(arg && ((arg instanceof ObjectID) || arg.__proto__.hasOwnProperty('toHexString')))  // ||
+    // arg._bsontype==="ObjectID"))
+    return ObjectID.sanitizeObject(arg);
 
   var buf;
 
@@ -95,11 +97,27 @@ ObjectID.createFromHexString = function(hexString) {
  * http://mongodb.github.io/node-mongodb-native/api-bson-generated/objectid.html#objectid-isvalid
  */
 ObjectID.isValid = function(objectid) {
-  if(!objectid || (typeof objectid !== 'string' && (typeof objectid !== 'object' || typeof objectid.toString !== 'function'))) return false;
+  var asdf = !objectid || (typeof objectid !== 'string' && (typeof objectid !== 'object' || typeof objectid.toString !== 'function'))
+  if(asdf)
+    return false;
 
   //call .toString() to get the hex if we're
   // working with an instance of ObjectID
   return /^[0-9A-F]{24}$/i.test(objectid.toString());
+};
+
+/**
+ *
+ * @param obj
+ */
+ObjectID.sanitizeObject = function(obj) {
+  let res = Object.getOwnPropertyNames(obj);
+  for (let i=0; i < res.length; i++) {
+    if (res[i] !== '_bsontype' || res[i] !== 'id') {
+      delete obj[res[i]];
+    }
+  }
+  return obj;
 };
 
 /**
