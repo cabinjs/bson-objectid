@@ -28,8 +28,11 @@ var isBuffer = function (obj) {
  */
 function ObjectID(arg) {
   if(!(this instanceof ObjectID)) return new ObjectID(arg);
-  if(arg && ((arg instanceof ObjectID) || arg._bsontype==="ObjectID"))
-    return arg;
+  // attempt at addressing comments 6-7 https://github.com/williamkapke/bson-objectid/issues/30
+  if(arg && ObjectID.hasRequiredProps(arg)) {
+    ObjectID.sanitizeObject(arg);
+    return ObjectID.createFromObject(arg);
+  }
 
   var buf;
 
@@ -85,6 +88,20 @@ ObjectID.createFromHexString = function(hexString) {
 };
 
 /**
+ * Creates an ObjectID from an object.
+ *
+ * @param obj
+ * @return {ObjectID} return the created ObjectID
+ * @api public
+ */
+ObjectID.createFromObject = function(obj) {
+  if (!ObjectID.isValid(obj.id))
+    throw new Error("Invalid object");
+
+  return new ObjectID(obj.id);
+};
+
+/**
  * Checks if a value is a valid bson ObjectId
  *
  * @param {String} objectid Can be a 24 byte hex string or an instance of ObjectID.
@@ -95,11 +112,36 @@ ObjectID.createFromHexString = function(hexString) {
  * http://mongodb.github.io/node-mongodb-native/api-bson-generated/objectid.html#objectid-isvalid
  */
 ObjectID.isValid = function(objectid) {
-  if(!objectid || (typeof objectid !== 'string' && (typeof objectid !== 'object' || typeof objectid.toString !== 'function'))) return false;
+  if(!objectid || (typeof objectid !== 'string' && (typeof objectid !== 'object' || typeof objectid.toString !== 'function')))
+    return false;
 
   //call .toString() to get the hex if we're
   // working with an instance of ObjectID
   return /^[0-9A-F]{24}$/i.test(objectid.toString());
+};
+
+/**
+ * Checks if an object argument has the properties we need to create an ObjectID
+ *
+ * @param arg
+ * @returns {boolean|boolean}
+ */
+ObjectID.hasRequiredProps = function(arg) {
+  return ((arg instanceof ObjectID) || (arg._bsontype==='ObjectID' && arg.id !== undefined));
+};
+
+/**
+ * Removes unwanted properties from an object.
+ *
+ * @param obj
+ */
+ObjectID.sanitizeObject = function(obj) {
+  let res = Object.getOwnPropertyNames(obj);
+  for (let i=0; i < res.length; i++) {
+    if (res[i] !== '_bsontype' && res[i] !== 'id' && res[i] !== 'str') {
+      delete obj[res[i]];
+    }
+  }
 };
 
 /**

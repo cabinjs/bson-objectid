@@ -7,8 +7,11 @@ export default ObjectID;
 declare class ObjectID {
     static createFromTime(time: number): ObjectID;
     static createFromHexString(hexString: string): ObjectID;
+    static createFromObject(obj: object): ObjectID;
     static isValid(hexString: string):boolean;
     static isValid(ObjectID: ObjectID):boolean;
+    static hasRequiredProps(input: object): boolean;
+    static sanitizeObject(input: object): object;
     static generate(): string;
     static generate(time: number): string;
     static toString():string;

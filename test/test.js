@@ -180,5 +180,18 @@ describe("ObjectIDs", function() {
     obj.toString.should.not.be.ok;
     ObjectID.isValid(obj).should.not.be.ok;
   });
-});
 
+  it('should not allow insertion of an arbitrary property', function() {
+    var json = {
+      "mal_formkey": {
+        "payload": "xxxx"
+      },
+      "_bsontype": "ObjectID",
+      "id": "5eecccdc951ca34d04e3ff65",
+    };
+
+    var obj = ObjectID(json);
+    obj.should.be.instanceof(ObjectID);
+    obj.toString().should.eql("5eecccdc951ca34d04e3ff65");
+  });
+});
