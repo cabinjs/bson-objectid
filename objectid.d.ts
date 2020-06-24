@@ -14,6 +14,7 @@ declare class ObjectID {
     static toString():string;
     static setMachineID(id: number): void;
     static setMachineID(id: string): void;
+    static getMachineID(): number;
     
     constructor();
     constructor(time: number);
