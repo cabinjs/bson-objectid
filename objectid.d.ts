@@ -1,4 +1,4 @@
-// Type definitions for bson-objectid 1.1.5
+// Type definitions for bson-objectid 1.3.1
 // Project: bson-objectid
 // Definitions by: Marcel Ernst <https://www.marcel-ernst.de>
 import { Buffer } from 'buffer';
@@ -15,6 +15,9 @@ declare class ObjectID {
     static generate(): string;
     static generate(time: number): string;
     static toString():string;
+    static setMachineID(id: number): void;
+    static setMachineID(id: string): void;
+    static getMachineID(): number;
     
     constructor();
     constructor(time: number);

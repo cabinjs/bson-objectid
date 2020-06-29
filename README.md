@@ -32,16 +32,16 @@ Possible arguments:<br>
 **array** Constructs the instance from an `Array` of 24 bytes.<br>
 **buffer** Constructs the instance from a 24 byte `Buffer` instance.<br>
 
-#### #id
+#### id
 **returns** the 12 byte id string.
 
-#### #str
-#### #toHexString()
+#### str
+#### toHexString()
 **returns** the `ObjectID` represented as a 24 character hex string.
 
-#### #equals(other)
+#### equals(other)
 **returns** true if the `ObjectID`s represent the same underlying value. Otherwise false.
-#### #getTimestamp()
+#### getTimestamp()
 **returns** the generation `Date` (accurate up to the second) that this `ObjectID` was generated.
 
 ### ObjectID.createFromTime(time)
