@@ -55,20 +55,6 @@ Checks if a value is a valid `ObjectID` or 24 character hex string.
 > THE NATIVE DOCUMENTATION ISN'T CLEAR ON THIS GUY!<br>
 > See: http://mongodb.github.io/node-mongodb-native/api-bson-generated/objectid.html#objectid-isvalid
 
-### ObjectID.generate()<br>ObjectID.generate(time)
-You can use this to generate a 24 character hex string without instantiating a `ObjectID` instance.
-
-This diverges from [bson](https://github.com/mongodb/js-bson)'s implementation which returns the 12 byte string.
-
-**returns** a valid 24 character `ObjectID` hex string.
-
-### ObjectID.setMachineID(number)<br>ObjectID.setMachineID(string)
-You can use this to set a custom machine-id.
-It should be a 6 character hex string or a 3 byte integer and will truncate all larger values.
-
-### ObjectID.getMachineID()
-**returns** the machine-id as a 3 byte int.
-
 ## Test
     mocha
 
