@@ -77,11 +77,6 @@ const equals:boolean = id1.equals(id2);
 // not necessary for typescript
 
 // ----------------------------------------------------------------------------
-// should generate valid hex strings
-const str1:string = ObjectID.generate();
-const str2:string = ObjectID.generate(time);
-
-// ----------------------------------------------------------------------------
 // should convert to a hex string for JSON.stringify
 // not necessary for typescript
 

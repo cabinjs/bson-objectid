@@ -12,10 +12,7 @@ declare class ObjectID {
     static generate(): string;
     static generate(time: number): string;
     static toString():string;
-    static setMachineID(id: number): void;
-    static setMachineID(id: string): void;
-    static getMachineID(): number;
-    
+
     constructor();
     constructor(time: number);
     constructor(hexString: string);

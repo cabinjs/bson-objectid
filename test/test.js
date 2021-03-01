@@ -13,42 +13,28 @@ describe("ObjectIDs", function() {
     var o = new ObjectID();
     o.should.have.property("id");
     o.id.should.have.length(12);
-    ObjectID.isValid(o.id).should.not.be.ok;
-  });
-
-  it("should have a `str` property", function() {
-    var o = new ObjectID();
-    o.should.have.property("str");
-    o.str.should.have.length(24);
-    ObjectID.isValid(o.str).should.be.ok;
+    ObjectID.isValid(o.id).should.be.ok;
   });
 
   it("should construct with a `time` argument", function() {
     var time = 1414093117;
     var o = new ObjectID(time);
     o.should.be.instanceof(ObjectID);
-    o.str.substr(0,8).should.eql("5449593d");
-  });
-
-  it("should construct with an `array` argument", function() {
-    var array = [ 84, 73, 90, 217, 76, 147, 71, 33, 237, 231, 109, 144 ];
-    var o = new ObjectID(array);
-    o.should.be.instanceof(ObjectID);
-    o.str.should.eql("54495ad94c934721ede76d90");
+    o.toHexString().substr(0,8).should.eql("5449593d");
   });
 
   it("should construct with a `buffer` argument", function() {
-    var buffer = new Buffer([ 84, 73, 90, 217, 76, 147, 71, 33, 237, 231, 109, 144 ]);
+    var buffer = Buffer.from([ 84, 73, 90, 217, 76, 147, 71, 33, 237, 231, 109, 144 ]);
     var o = new ObjectID(buffer);
     o.should.be.instanceof(ObjectID);
-    o.str.should.eql("54495ad94c934721ede76d90");
+    o.toHexString().should.eql("54495ad94c934721ede76d90");
   });
 
   it("should construct with a `hexString` argument", function() {
     var hexString = "54495ad94c934721ede76d90";
     var o = new ObjectID(hexString);
     o.should.be.instanceof(ObjectID);
-    o.str.should.eql(hexString);
+    o.toHexString().should.eql(hexString);
   });
 
   it("should construct with a `idString` argument", function() {
@@ -62,14 +48,14 @@ describe("ObjectIDs", function() {
     var time = 1414093117;
     var o = ObjectID.createFromTime(time);
     o.should.be.instanceof(ObjectID);
-    o.str.should.eql("5449593d0000000000000000");
+    o.toHexString().should.eql("5449593d0000000000000000");
   });
 
   it("should construct with `ObjectID.createFromHexString(hexString)`", function() {
     var hexString = "54495ad94c934721ede76d90";
     var o = ObjectID.createFromHexString(hexString);
     o.should.be.instanceof(ObjectID);
-    o.str.should.eql(hexString);
+    o.toHexString().should.eql(hexString);
   });
 
   it("should correctly retrieve timestamp", function() {
@@ -106,22 +92,17 @@ describe("ObjectIDs", function() {
 
   it("should evaluate equality with .equals()", function() {
     var id1 = ObjectID();
-    var id2 = ObjectID(id1.str);
+    var id2 = ObjectID(id1.toHexString());
     (id1.equals(id2)).should.be.true;
   });
 
   it("should evaluate equality with via deepEqual", function() {
     var id1 = ObjectID();
-    var id2 = ObjectID(id1.str);
+    var id2 = ObjectID(id1.toHexString());
     id1.should.eql(id2);
 
     var id3 = ObjectID();
     id1.should.not.eql(id3, "id1 is not the same as id3");
-  });
-
-  it("should generate valid hex strings", function() {
-    var h = ObjectID.generate();
-    ObjectID.isValid(h).should.be.ok;
   });
 
   it("should convert to a hex string for JSON.stringify", function() {
@@ -143,42 +124,9 @@ describe("ObjectIDs", function() {
     }).should.throw();
   });
 
-  it("should should set/get a custom machineID", function() {
-    var tests = [
-      { machineID: 0x1,                 expected: 0x000001 }, // short
-      { machineID: 0x123456,            expected: 0x123456 }, // exact
-      { machineID: 0x0987654321,        expected: 0x654321 }, // long
-
-      { machineID: 'TIZÙLG!íçm',      expected: 0xe41e05 }, // any string
-
-      { machineID: '01',            expected: 0x000001 }, // short hex string
-      { machineID: '01a2b3',        expected: 0x01a2b3 }, // exact hex string
-      { machineID: '7f6e5d4c3b2a0', expected: 0xc3b2a0 }, // long hex string
-    ];
-
-    tests.forEach(function(test) {
-      ObjectID.setMachineID(test.machineID);
-
-      ObjectID.getMachineID().should.eql(test.expected);
-    });
-  });
-
-  it("should work with a specific machineID", function() {
-    var testPattern = /^([0-9a-f]{8})([0-9a-f]{6})([0-9a-f]{4})([0-9a-f]{6})$/i;
-
-    var mid = parseInt(Math.random() * 0xFFFFFF, 10);
-    ObjectID.setMachineID(mid);
-    
-    var o = ObjectID.generate();
-    var result = o.match(testPattern);
-    
-    result[2].should.eql(mid.toString(16));
-  });
-
   it("should not throw an error for objects without toString", function() {
     var obj = Object.create({}, { toString: { value: false, writeable: false } });
     obj.toString.should.not.be.ok;
     ObjectID.isValid(obj).should.not.be.ok;
   });
 });
-
