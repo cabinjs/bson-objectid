@@ -294,7 +294,7 @@ function buffer(str) {
   return out;
 }
 
-var inspect = (Symbol && Symbol.for('nodejs.util.inspect.custom')) || 'inspect';
+var inspect = (Symbol && Symbol.for && Symbol.for('nodejs.util.inspect.custom')) || 'inspect';
 
 /**
  * Converts to a string representation of this Id.
