@@ -51,6 +51,38 @@ oid = ObjectID.createFromTime(time);
 oid = ObjectID.createFromHexString(hexString);
 
 // ----------------------------------------------------------------------------
+// should construct with no arguments
+oid = ObjectID();
+
+// ----------------------------------------------------------------------------
+// should have an `id` property
+oid.id;
+
+// ----------------------------------------------------------------------------
+// should have a `str` property
+oid.str;
+
+// ----------------------------------------------------------------------------
+// should construct with a `time` argument
+oid = ObjectID(time);
+
+// ----------------------------------------------------------------------------
+// should construct with an `array` argument
+oid = ObjectID(array);
+
+// ----------------------------------------------------------------------------
+// should construct with a `buffer` argument
+oid = ObjectID(buffer);
+
+// ----------------------------------------------------------------------------
+// should construct with a `hexString` argument
+oid = ObjectID(hexString);
+
+// ----------------------------------------------------------------------------
+// should construct with a `idString` argument
+oid = ObjectID(idString);
+
+// ----------------------------------------------------------------------------
 // should correctly retrieve timestamp
 const timestamp:number = oid.getTimestamp();
 
