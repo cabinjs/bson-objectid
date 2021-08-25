@@ -33,7 +33,5 @@ declare interface ObjectIDCtor {
   createFromHexString(hexString: string): ObjectID;
   isValid(hexString: string): boolean;
   isValid(ObjectID: ObjectID): boolean;
-  generate(): string;
-  generate(time: number): string;
   toString(): string;
 }
