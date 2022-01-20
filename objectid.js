@@ -133,7 +133,7 @@ ObjectID.isValid = function(id) {
   if (id == null) return false;
 
   try {
-    new ObjectId(id);
+    new ObjectID(id);
     return true;
   } catch {
     return false;
