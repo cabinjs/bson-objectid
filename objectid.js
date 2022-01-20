@@ -132,31 +132,12 @@ ObjectID.createFromHexString = function(hexString) {
 ObjectID.isValid = function(id) {
   if (id == null) return false;
 
-  if (typeof id === 'number') {
+  try {
+    new ObjectID(id);
     return true;
+  } catch {
+    return false;
   }
-
-  if (typeof id === 'string') {
-    return id.length === 12 || (id.length === 24 && checkForHexRegExp.test(id));
-  }
-
-  if (id instanceof ObjectID) {
-    return true;
-  }
-
-  if (isBuffer(id)) {
-    return true;
-  }
-
-  // Duck-Typing detection of ObjectId like objects
-  if (
-      typeof id.toHexString === 'function' &&
-      (id.id instanceof _Buffer || typeof id.id === 'string')
-  ) {
-    return id.id.length === 12 || (id.id.length === 24 && checkForHexRegExp.test(id.id));
-  }
-
-  return false;
 };
 
 ObjectID.prototype = {
