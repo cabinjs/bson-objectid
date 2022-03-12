@@ -10,7 +10,7 @@ declare interface ObjectID {
 
   toHexString(): string;
   equals(other: ObjectID): boolean;
-  getTimestamp(): number;
+  getTimestamp(): Date;
 }
 
 declare interface ObjectIDCtor {
