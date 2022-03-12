@@ -31,8 +31,8 @@
   "homepage": "https://github.com/williamkapke/bson-objectid",
   "devDependencies": {
     "@types/node": "^8.0.31",
+    "mocha": "^5.2.0",
     "should": "^4.1.0",
-    "typescript": "^2.5.3",
-    "mocha": "^5.2.0"
+    "typescript": "^4.6.2"
   }
 }

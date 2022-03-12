@@ -84,7 +84,7 @@ oid = ObjectID(idString);
 
 // ----------------------------------------------------------------------------
 // should correctly retrieve timestamp
-const timestamp:number = oid.getTimestamp();
+const timestamp:Date = oid.getTimestamp();
 
 // ----------------------------------------------------------------------------
 // should validate valid hex strings
