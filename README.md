@@ -6,7 +6,7 @@ This module allows you to create and parse `ObjectID`s without a reference to th
 modules.
 
 The goal is to be 100% compatable with all [bson](https://github.com/mongodb/js-bson)'s
-public API implementation (found here: https://github.com/mongodb/js-bson/blob/master/lib/objectid.js).
+public API implementation (found here: https://github.com/mongodb/js-bson/blob/main/src/objectid.ts).
 
 ## Install
     $ npm install bson-objectid
