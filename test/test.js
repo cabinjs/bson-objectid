@@ -129,4 +129,10 @@ describe("ObjectIDs", function() {
     obj.toString.should.not.be.ok;
     ObjectID.isValid(obj).should.not.be.ok;
   });
+
+  it("should use Buffer when _Buffer is undefined", () => 
+  {
+    var obj = { id: Buffer.from("54495ad94c934721ede76d90"), toHexString: () => "" };
+    ObjectID.isValid(obj).should.be.true;
+  });
 });
