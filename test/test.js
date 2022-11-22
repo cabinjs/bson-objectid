@@ -30,6 +30,11 @@ describe("ObjectIDs", function() {
     o.toHexString().should.eql("54495ad94c934721ede76d90");
   });
 
+  it("should not be valid with invalid buffer", function() {
+    var buffer = Buffer.from('hello');
+    ObjectID.isValid(buffer).should.not.be.ok;
+  });
+
   it("should construct with a `hexString` argument", function() {
     var hexString = "54495ad94c934721ede76d90";
     var o = new ObjectID(hexString);
@@ -128,5 +133,10 @@ describe("ObjectIDs", function() {
     var obj = Object.create({}, { toString: { value: false, writeable: false } });
     obj.toString.should.not.be.ok;
     ObjectID.isValid(obj).should.not.be.ok;
+  });
+
+  it("should use Buffer when _Buffer is undefined", function() {
+    var obj = { id: Buffer.from("54495ad94c934721ede76d90"), toHexString: () => "" };
+    ObjectID.isValid(obj).should.be.true;
   });
 });

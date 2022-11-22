@@ -2,6 +2,10 @@
 var MACHINE_ID = Math.floor(Math.random() * 0xFFFFFF);
 var index = ObjectID.index = parseInt(Math.random() * 0xFFFFFF, 10);
 var pid = (typeof process === 'undefined' || typeof process.pid !== 'number' ? Math.floor(Math.random() * 100000) : process.pid) % 0xFFFF;
+// <https://github.com/williamkapke/bson-objectid/pull/51>
+// Attempt to fallback Buffer if _Buffer is undefined (e.g. for Node.js).
+// Worst case fallback to null and handle with null checking before using.
+var BufferCtr = (() => { try { return _Buffer; }catch(_){ try{ return Buffer; }catch(_){ return null; } } })();
 
 /**
  * Determine if an object is Buffer
@@ -144,16 +148,20 @@ ObjectID.isValid = function(id) {
     return true;
   }
 
+  // <https://github.com/williamkapke/bson-objectid/issues/53>
   if (isBuffer(id)) {
-    return true;
+    return ObjectID.isValid(id.toString('hex'));
   }
 
   // Duck-Typing detection of ObjectId like objects
-  if (
-      typeof id.toHexString === 'function' &&
-      (id.id instanceof _Buffer || typeof id.id === 'string')
-  ) {
-    return id.id.length === 12 || (id.id.length === 24 && checkForHexRegExp.test(id.id));
+  // <https://github.com/williamkapke/bson-objectid/pull/51>
+  if (typeof id.toHexString === 'function') {
+    if(
+      BufferCtr &&
+      (id.id instanceof BufferCtr || typeof id.id === 'string')
+    ) {
+      return id.id.length === 12 || (id.id.length === 24 && checkForHexRegExp.test(id.id));
+    }
   }
 
   return false;
