@@ -313,3 +313,6 @@ var inspect = (Symbol && Symbol.for && Symbol.for('nodejs.util.inspect.custom'))
 ObjectID.prototype[inspect] = function() { return "ObjectID("+this+")" };
 ObjectID.prototype.toJSON = ObjectID.prototype.toHexString;
 ObjectID.prototype.toString = ObjectID.prototype.toHexString;
+Object.defineProperty(ObjectID.prototype, "str", {
+  get: ObjectID.prototype.toHexString
+});
