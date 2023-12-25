@@ -123,6 +123,12 @@ describe("ObjectIDs", function() {
     o.toString().should.eql("54495ad94c934721ede76d90");
   });
 
+  it("should convert to a hex string for ObjectID.str", function() {
+    var hexString = "54495ad94c934721ede76d90";
+    var o = new ObjectID(hexString);
+    o.str.should.eql("54495ad94c934721ede76d90");
+  });
+
   it("should throw and error if constructing with an invalid string", function() {
     (function(){
       var o = new ObjectID("tttttttttttttttttttttttt");
