@@ -26,9 +26,9 @@
   "author": "William Kapke",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/williamkapke/bson-objectid/issues"
+    "url": "https://github.com/Walcu-Engineering/bson-objectid/issues"
   },
-  "homepage": "https://github.com/williamkapke/bson-objectid",
+  "homepage": "https://github.com/Walcu-Engineering/bson-objectid",
   "devDependencies": {
     "@types/node": "^8.0.31",
     "mocha": "^5.2.0",
