@@ -1,6 +1,6 @@
 {
   "name": "@walcu-engineering/bson-objectid",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "Construct ObjectIDs without the mongodb driver or bson module",
   "main": "objectid.js",
   "directories": {
