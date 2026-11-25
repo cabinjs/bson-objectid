@@ -1,4 +1,3 @@
-
 var MACHINE_ID = Math.floor(Math.random() * 0xFFFFFF);
 var global_index = ObjectId.index = parseInt(Math.random() * 0xFFFFFF, 10);
 var pid = (typeof process === 'undefined' || typeof process.pid !== 'number' ? Math.floor(Math.random() * 100000) : process.pid) % 0xFFFF;
@@ -16,10 +15,10 @@ var BufferCtr = (() => { try { return _Buffer; }catch(_){ try{ return Buffer; }c
  */
 var isBuffer = function (obj) {
   return !!(
-  obj != null &&
-  obj.constructor &&
-  typeof obj.constructor.isBuffer === 'function' &&
-  obj.constructor.isBuffer(obj)
+    obj != null &&
+    obj.constructor &&
+    typeof obj.constructor.isBuffer === 'function' &&
+    obj.constructor.isBuffer(obj)
   )
 };
 
@@ -175,7 +174,7 @@ ObjectId.prototype = {
   constructor: ObjectId,
 
   /**
-   * Used internally by monbodb
+   * Used internally by mongodb
    *
    * @param {uint8array} the current serialized object.
    * @param {index} the position where the serialized ObjectId should be inserted from.
@@ -323,6 +322,7 @@ const inspect = (Symbol && Symbol.for && Symbol.for('nodejs.util.inspect.custom'
  * @api private
  */
 ObjectId.prototype[inspect] = function() { return "ObjectId("+this+")" };
-ObjectId.prototype[Symbol.for('@@mdb.bson.version')] = 6;
+ObjectId.prototype[Symbol.for('@@mdb.bson.version')] = 7;
+ObjectId.prototype[Symbol.for('@@mdb.bson.type')] = 'ObjectId';
 ObjectId.prototype.toJSON = ObjectId.prototype.toHexString;
 ObjectId.prototype.toString = ObjectId.prototype.toHexString;

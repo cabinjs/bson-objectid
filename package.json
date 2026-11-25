@@ -3,12 +3,10 @@
   "version": "4.0.1",
   "description": "Construct ObjectIDs without the mongodb driver or bson module",
   "main": "objectid.js",
-  "types": "./objectid.d.ts",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "typescript-test": "tsc --project typing-tests",
     "test": "mocha"
   },
   "repository": {
@@ -30,7 +28,6 @@
   },
   "homepage": "https://github.com/Walcu-Engineering/bson-objectid",
   "devDependencies": {
-    "@types/node": "^8.0.31",
     "mocha": "^5.2.0",
     "should": "^4.1.0",
     "typescript": "^4.6.2"
